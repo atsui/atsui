@@ -5,7 +5,7 @@ import {ThemePalette} from '@angular/material/core';
 import {MatSelect} from '@angular/material/select';
 import {By} from '@angular/platform-browser';
 
-import {dispatchMouseEvent} from './../../../../angular-cdk-testing';
+import {dispatchMouseEvent} from '../../../../../tools/angular-cdk-testing';
 
 import {AtsuiPaginatorModule, AtsuiPaginator, AtsuiPaginatorI18n} from './public-api';
 
