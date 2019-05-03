@@ -1,0 +1,16 @@
+@import 'typography';
+
+// Import all the theming functionality.
+@import '../paginator/paginator.theme.scss';
+
+// Includes all of the typographic styles.
+@mixin atsui-material-typography($config: null) {
+  @if $config == null {
+    $config: mat-typography-config();
+  }
+
+  @include mat-base-typography($config);
+
+  // Include theme styles for your custom components.
+  @include atsui-paginator-theme($theme);
+}

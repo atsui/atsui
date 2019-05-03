@@ -8,6 +8,11 @@
       "sourceRoot": "projects/atsui/src",
       "projectType": "library",
       "prefix": "atsui",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -159,6 +164,76 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "projects/atsui-doc-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "atsui-examples": {
+      "root": "projects/atsui-examples",
+      "sourceRoot": "projects/atsui-examples/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/atsui-examples/tsconfig.lib.json",
+            "project": "projects/atsui-examples/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/atsui-examples/src/test.ts",
+            "tsConfig": "projects/atsui-examples/tsconfig.spec.json",
+            "karmaConfig": "projects/atsui-examples/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/atsui-examples/tsconfig.lib.json",
+              "projects/atsui-examples/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "atsui-docs": {
+      "root": "projects/atsui-docs",
+      "sourceRoot": "projects/atsui-docs/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/atsui-docs/tsconfig.lib.json",
+            "project": "projects/atsui-docs/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/atsui-docs/src/test.ts",
+            "tsConfig": "projects/atsui-docs/tsconfig.spec.json",
+            "karmaConfig": "projects/atsui-docs/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/atsui-docs/tsconfig.lib.json",
+              "projects/atsui-docs/tsconfig.spec.json"
+            ],
             "exclude": [
               "**/node_modules/**"
             ]
