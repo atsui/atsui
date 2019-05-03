@@ -82,19 +82,23 @@
       "HostBinding",
       "HostListener"
     ],
-    "validate-decorators": [true, {
-      "Component": {
-        "!host": "\\[class\\]",
-        "!preserveWhitespaces": ".*",
-        "!styles": ".*",
-        "changeDetection": "\\.OnPush$",
-        "encapsulation": "\\.None$",
-        "moduleId": "^module\\.id$"
+    "validate-decorators": [
+      true,
+      {
+        "Component": {
+          "!host": "\\[class\\]",
+          "!preserveWhitespaces": ".*",
+          "!styles": ".*",
+          "changeDetection": "\\.OnPush$",
+          "encapsulation": "\\.None$",
+          "moduleId": "^module\\.id$"
+        },
+        "Directive": {
+          "!host": "\\[class\\]"
+        },
+        "NgModule": "^(?!\\s*$).+"
       },
-      "Directive": {
-        "!host": "\\[class\\]"
-      },
-      "NgModule": "^(?!\\s*$).+"
-    }, "src/+(lib|cdk|material-experimental|cdk-experimental)/**/!(*.spec).ts"],
+      "src/+(lib|cdk|material-experimental|cdk-experimental)/**/!(*.spec).ts"
+    ]
   }
 }

@@ -24,6 +24,24 @@
       ],
       "atsui/*": [
         "dist/atsui/*"
+      ],
+      "atsui-examples": [
+        "dist/atsui-examples"
+      ],
+      "atsui-examples/*": [
+        "dist/atsui-examples/*"
+      ],
+      "atsui-docs": [
+        "dist/atsui-docs"
+      ],
+      "atsui-docs/*": [
+        "dist/atsui-docs/*"
+      ],
+      "tools": [
+        "dist/tools/*"
+      ],
+      "tools/*": [
+        "dist/tools/*"
       ]
     }
   }
