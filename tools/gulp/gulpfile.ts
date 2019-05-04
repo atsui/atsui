@@ -10,10 +10,11 @@ import './tasks/exec';
 import './tasks/scss-bundle';
 import './tasks/scss-build';
 import { buildScss } from './tasks/scss-build';
-import { markdownToHtml } from 'tasks/markdown-to-html';
+import { markdownToHtml } from './tasks/markdown-to-html';
 import { codeToHtml } from 'tasks/code-to-html';
+// import { codeToHtml } from './tasks/code-to-html';
 
-const atsuiLibProject = new AngularLib('atsui-lib', [], [], 
+const atsuiLibProject = new AngularLib('atsui-lib', [], [],
     async () => {
         await ngTask('build', 'atsui');
         await bundleScss('./projects/atsui/src/themes.scss', './projects/atsui/src/**/*.theme.scss', './dist/atsui/themes/theme.scss');
@@ -21,7 +22,7 @@ const atsuiLibProject = new AngularLib('atsui-lib', [], [],
     });
 atsuiLibProject.createGulpTasks();
 
-const atsuiExamplesProject = new AngularApp('atsui-examples', [atsuiLibProject], [], 
+const atsuiExamplesProject = new AngularApp('atsui-examples', [atsuiLibProject], [],
     async (prod: boolean) => {
         await ngTask('build', 'atsui-examples', `--prod=${prod}`);
         // npm run typedoc -- --options typedoc.json --exclude '**/*.spec.ts' ./projects/atsui/src
@@ -29,12 +30,12 @@ const atsuiExamplesProject = new AngularApp('atsui-examples', [atsuiLibProject],
 );
 atsuiExamplesProject.createGulpTasks();
 
-const atsuiDocsProject = new AngularApp('atsui-docs', [], [], 
+const atsuiDocsProject = new AngularApp('atsui-docs', [], [],
     async (prod: boolean) => {
         await ngTask('build', 'atsui-docs', `--prod=${prod}`);
-        await markdownToHtml('./projects/atsui/src/lib', './dist/atsui-docs/overviews', '**/*.md');
-        await codeToHtml('./projects/atsui-examples/src/lib', './dist/atsui-docs/examples', '**/*.md');
-        // npm run typedoc -- --options typedoc.json --exclude '**/*.spec.ts' ./projects/atsui/src >> ./dist/atsui-docs/api
+        await markdownToHtml('./projects/atsui/src/lib', './dist/atsui-docs/docs-overviews');
+        await codeToHtml('./projects/atsui-examples/src/lib', './dist/atsui-docs/docs-examples');
+        // npm run typedoc -- --options typedoc.json --exclude '**/*.spec.ts' ./projects/atsui/src >> ./dist/atsui-docs/docs-api
         // guides
     }
 );

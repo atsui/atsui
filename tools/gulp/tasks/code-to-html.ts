@@ -1,30 +1,30 @@
 import { src, dest } from 'gulp';
-import {highlightCodeBlock} from '../../highlight/highlight-code-block';
-import {DocsMarkdownRenderer} from '../../markdown-to-html/docs-marked-renderer';
 import {join} from 'path';
 
 // These imports lack of type definitions.
-const gulpmarkdown = require('gulp-markdown');
+const gulpHighlightFiles = require('gulp-highlight-files');
 const gulpIf = require('gulp-if');
-const gulpuglify = require('gulp-uglify');
-const gulpAutoprefixer = require('gulp-autoprefixer');
+const gulpHtmlMin = require('gulp-htmlmin');
 const gulpFlatten = require('gulp-flatten');
+const gulpRename = require('gulp-rename');
 
 /** Create a gulp task that builds SCSS files. */
-export function codeToHtml(sourceDir: string, outputDir: string, glob: string | string[] = '**/*.md', minifyOutput = false) {
-    if (typeof glob === 'string') { glob = [glob]; }
+export function codeToHtml(sourceDir: string, outputDir: string,
+                           glob: string | string[] = ['**/*.html', '**/*.ts', '**/*.css', '!**/*.spec.ts'],
+                           minifyOutput = false) {
 
-    // Custom markdown renderer for transforming markdown files for the docs.
-    const markdownRenderer = new DocsMarkdownRenderer();
+    return new Promise(async (resolve, reject) => {
 
-    return src(glob.map((g) => join(sourceDir, g)), {})
-        .pipe(gulpmarkdown({
-            renderer: markdownRenderer,
-            highlight: highlightCodeBlock
-        })
-        .on('error', gulpmarkdown.logError))
-        .pipe(gulpIf(minifyOutput, gulpuglify()))
-        .pipe(gulpAutoprefixer())
-        .pipe(gulpFlatten())
-        .pipe(dest(outputDir, { overwrite: true }));
+        if (typeof glob === 'string') { glob = [glob]; }
+
+        return src(glob.map((g) => join(sourceDir, g)), {})
+            .pipe(gulpHighlightFiles().on('error', reject))
+            .pipe(gulpIf(minifyOutput, gulpHtmlMin({ collapseWhitespace: true })))
+            .pipe(gulpFlatten())
+            .pipe(gulpRename((path: any) => {
+                path.extname += '.html';
+            }))
+            .pipe(dest(outputDir, { overwrite: true }))
+            .on('end', resolve);
+    });
 }
