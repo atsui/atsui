@@ -7,7 +7,7 @@
       "root": "projects/atsui",
       "sourceRoot": "projects/atsui/src",
       "projectType": "library",
-      "prefix": "atsui",
+      "prefix": "@atsui",
       "schematics": {
         "@schematics/angular:component": {
           "styleext": "scss"
@@ -18,7 +18,7 @@
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
             "tsConfig": "projects/atsui/tsconfig.lib.json",
-            "project": "projects/atsui/ng-package.json"
+            "project": "projects/atsui/src/package.json"
           }
         },
         "test": {
@@ -43,134 +43,6 @@
         }
       }
     },
-    "atsui-doc": {
-      "root": "projects/atsui-doc/",
-      "sourceRoot": "projects/atsui-doc/src",
-      "projectType": "application",
-      "prefix": "atsui-doc",
-      "schematics": {},
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/atsui-doc",
-            "index": "projects/atsui-doc/src/index.html",
-            "main": "projects/atsui-doc/src/main.ts",
-            "polyfills": "projects/atsui-doc/src/polyfills.ts",
-            "tsConfig": "projects/atsui-doc/tsconfig.app.json",
-            "assets": [
-              "projects/atsui-doc/src/favicon.ico",
-              "projects/atsui-doc/src/assets"
-            ],
-            "styles": [
-              "projects/atsui-doc/src/styles.css"
-            ],
-            "scripts": [],
-            "es5BrowserSupport": true
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "projects/atsui-doc/src/environments/environment.ts",
-                  "with": "projects/atsui-doc/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "atsui-doc:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "atsui-doc:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "atsui-doc:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/atsui-doc/src/test.ts",
-            "polyfills": "projects/atsui-doc/src/polyfills.ts",
-            "tsConfig": "projects/atsui-doc/tsconfig.spec.json",
-            "karmaConfig": "projects/atsui-doc/karma.conf.js",
-            "styles": [
-              "projects/atsui-doc/src/styles.css"
-            ],
-            "scripts": [],
-            "assets": [
-              "projects/atsui-doc/src/favicon.ico",
-              "projects/atsui-doc/src/assets"
-            ]
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/atsui-doc/tsconfig.app.json",
-              "projects/atsui-doc/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "atsui-doc-e2e": {
-      "root": "projects/atsui-doc-e2e/",
-      "projectType": "application",
-      "prefix": "",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "projects/atsui-doc-e2e/protractor.conf.js",
-            "devServerTarget": "atsui-doc:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "atsui-doc:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "projects/atsui-doc-e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
     "atsui-examples": {
       "root": "projects/atsui-examples",
       "sourceRoot": "projects/atsui-examples/src",
@@ -181,7 +53,7 @@
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
             "tsConfig": "projects/atsui-examples/tsconfig.lib.json",
-            "project": "projects/atsui-examples/ng-package.json"
+            "project": "projects/atsui-examples/src/package.json"
           }
         },
         "test": {
@@ -198,41 +70,6 @@
             "tsConfig": [
               "projects/atsui-examples/tsconfig.lib.json",
               "projects/atsui-examples/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "atsui-docs": {
-      "root": "projects/atsui-docs",
-      "sourceRoot": "projects/atsui-docs/src",
-      "projectType": "library",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/atsui-docs/tsconfig.lib.json",
-            "project": "projects/atsui-docs/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/atsui-docs/src/test.ts",
-            "tsConfig": "projects/atsui-docs/tsconfig.spec.json",
-            "karmaConfig": "projects/atsui-docs/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/atsui-docs/tsconfig.lib.json",
-              "projects/atsui-docs/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
