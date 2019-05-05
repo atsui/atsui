@@ -88,9 +88,9 @@ export class EntryPointGrouper implements Processor {
       const moduleInfo = getModulePackageInfo(doc);
 
       const packageName = moduleInfo.packageName;
-      const packageDisplayName = packageName === 'cdk' ? 'CDK' : 'Material';
+      const packageDisplayName = packageName;
 
-      const moduleImportPath = `@angular/${packageName}/${moduleInfo.entryPointName}`;
+      const moduleImportPath = `@atsui/${packageName}/${moduleInfo.entryPointName}`;
       const entryPointName = packageName + '-' + moduleInfo.name;
 
       // Compute a public URL that refers to the document. This is helpful if we want to
@@ -100,6 +100,7 @@ export class EntryPointGrouper implements Processor {
       // Get the entry-point for this doc, or, if one does not exist, create it.
       let entryPoint;
       if (entryPoints.has(entryPointName)) {
+        // tslint:disable-next-line:no-non-null-assertion
         entryPoint = entryPoints.get(entryPointName)!;
       } else {
         entryPoint = new EntryPointDoc(entryPointName);
@@ -147,18 +148,11 @@ function getModulePackageInfo(doc: Document): ModuleInfo {
 
   // The module name is usually the entry-point (e.g. slide-toggle, toolbar), but this is not
   // guaranteed because we can also export a module from lib/core. e.g. the ripple module.
-  let moduleName = pathSegments[1];
-
-  // The ripples are technically part of the `@angular/material/core` entry-point, but we
-  // want to show the ripple API separately in the docs. In order to archive this, we treat
-  // the ripple folder as its own module.
-  if (pathSegments[1] === 'core' && pathSegments[2] === 'ripple') {
-    moduleName = 'ripple';
-  }
+  const moduleName = pathSegments[1];
 
   return {
     name: moduleName,
-    packageName: pathSegments[0] === 'lib' ? 'material' : pathSegments[0],
+    packageName: pathSegments[0],
     entryPointName: pathSegments[1],
   };
 }

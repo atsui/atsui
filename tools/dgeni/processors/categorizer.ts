@@ -94,6 +94,7 @@ export class Categorizer implements Processor {
     // Classes can only extend a single class. This means that there can't be multiple extend
     // clauses for the Dgeni document. To make the template syntax simpler and more readable,
     // store the extended class in a variable.
+    // tslint:disable-next-line:no-non-null-assertion
     classDoc.extendedDoc = classDoc.extendsClauses[0] ? classDoc.extendsClauses[0].doc! : null;
     classDoc.directiveMetadata = getDirectiveMetadata(classDoc);
 

@@ -18,10 +18,12 @@ export class MergeInheritedProperties implements Processor {
 
   private addInheritedProperties(doc: ClassExportDoc) {
     doc.implementsClauses.filter(clause => clause.doc).forEach(clause => {
+      // tslint:disable-next-line:no-non-null-assertion
       clause.doc!.members.forEach(member => this.addMemberDocIfNotPresent(doc, member));
     });
 
     doc.extendsClauses.filter(clause => clause.doc).forEach(clause => {
+      // tslint:disable-next-line:no-non-null-assertion
       clause.doc!.members.forEach(member => this.addMemberDocIfNotPresent(doc, member));
     });
   }

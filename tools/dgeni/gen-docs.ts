@@ -6,7 +6,7 @@ import {join, relative} from 'path';
 import {apiDocsPackage} from './docs-package';
 
 /** Create a gulp task that builds SCSS files. */
-export function generateApiFromCodeTask(labelPackagePath: string, outputDirPath: string, ...entryPointArgs: any) {
+export function generateApiFromCodeTask(labelPackagePath: string, outputDirPath: string, ...entryPointArgs: string[]) {
 
     const execRootPath = process.cwd();
     const packagePath = join(execRootPath, labelPackagePath);
@@ -36,29 +36,21 @@ export function generateApiFromCodeTask(labelPackagePath: string, outputDirPath:
     // The first argument will be always the package name, and the second argument will be a
     // joined string containing names of all entry points for that specific package.
     // e.g. "cdk" "platform,bidi,a11y"
-    for (let i = 0; i + 1 < entryPointArgs.length; i += 2) {
-        const packageName = entryPointArgs[i];
-        const entryPoints = entryPointArgs[i + 1].split(',');
-
-        // Walk through each entry point of the current package and add it to the
-        // "readTypeScriptModules" processor so that it will parse it. Additionally we want
-        // to setup path mapping for that entry-point, so that we are able to merge
-        // inherited class members across entry points or packages.
-        entryPoints.forEach(entryPointName => {
-        const entryPointPath = `${packageName}/${entryPointName}`;
-        // For the entry point path we temporarily want to replace "material" with "lib", as
-        // our package source folder does not align with the entry-point name.
-        const entryPointIndexPath = `${entryPointPath.replace('material', 'lib')}/index.ts`;
+    entryPointArgs.forEach((entryPoint) => {
+        const entryPointIndexPath = `${entryPoint.replace('lib', '.')}/index.ts`;
 
         // tslint:disable-next-line:no-non-null-assertion
-        tsParser.options.paths![`@angular/${entryPointPath}`] = [entryPointIndexPath];
+        tsParser.options.paths![`${entryPoint}`] = [entryPointIndexPath];
         readTypeScriptModules.sourceFiles.push(entryPointIndexPath);
-        });
-    }
+
+        console.error(entryPoint);
+        console.error(entryPointIndexPath);
+    });
 
     // Base URL for the `tsParser`. The base URL refer to the directory that includes all
     // package sources that need to be processed by Dgeni.
     tsParser.options.baseUrl = packagePath;
+    console.error(packagePath);
 
     // This is ensures that the Dgeni TypeScript processor is able to parse node modules such
     // as the Angular packages which might be needed for doc items. e.g. if a class implements
@@ -77,6 +69,7 @@ export function generateApiFromCodeTask(labelPackagePath: string, outputDirPath:
     writeFilesProcessor.outputFolder = outputDirPath;
     });
 
+    console.error('Dgeni');
     // Run the docs generation. The process will be automatically kept alive until Dgeni
     // completed. In case the returned promise has been rejected, we need to manually exit the
     // process with the proper exit code because Dgeni doesn't use native promises which would

@@ -47,7 +47,8 @@ function getBindingPropertyData(doc: PropertyMemberDoc, metadata: Map<string, an
   if (hasMemberDecorator(doc, decoratorName)) {
     return {
       name: doc.name,
-      alias: doc.decorators!.find(d => d.name == decoratorName)!.arguments![0]
+      // tslint:disable-next-line:no-non-null-assertion
+      alias: doc.decorators!.find(d => d.name === decoratorName)!.arguments![0]
     };
   }
 }

@@ -56,7 +56,7 @@ export function normalizeFunctionParameters(doc: DefaultFunctionDoc) {
         doc.params.push({
           name: parameterName,
           type: parameterType.trim(),
-          isOptional: isOptional,
+          isOptional,
           description: ''
         });
       } else {

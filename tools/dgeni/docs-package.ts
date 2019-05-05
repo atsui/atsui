@@ -84,7 +84,7 @@ apiDocsPackage.config((parseTagsProcessor: any) => {
 
 apiDocsPackage.config((checkAnchorLinksProcessor: any) => {
   // This ensures that Dgeni will fail if we generate links that don't follow this format.
-  checkAnchorLinksProcessor.ignoredLinks.push(/(components|cdk)\/[\w-]+\/api#\w+/);
+  checkAnchorLinksProcessor.ignoredLinks.push(/components\/[\w-]+\/api#\w+/);
 });
 
 // Configure the processor for understanding TypeScript.
