@@ -1,37 +1,25 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
-  "extends": "./tsconfig.json",
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../out-tsc/atsui-lib",
+    "outDir": "../../out-tsc/lib",
     "target": "es2015",
-    "module": "es2015",
-    "moduleResolution": "node",
     "declaration": true,
-    "sourceMap": true,
+    "declarationMap": true,
     "inlineSources": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "types": [
-      "node"
-    ],
+    "types": [],
     "lib": [
       "dom",
       "es2018"
     ]
   },
   "angularCompilerOptions": {
-    "annotateForClosureCompiler": true,
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true,
-    "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true,
     "enableResourceInlining": true
   },
   "exclude": [
-    "test.ts",
+    "src/test.ts",
     "**/*.spec.ts"
-  ],
-  "typeRoots": [
-    "node_modules/@types"
   ]
 }

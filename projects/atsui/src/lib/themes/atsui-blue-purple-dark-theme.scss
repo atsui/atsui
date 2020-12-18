@@ -1,0 +1,19 @@
+@import '../core/theming/all-theme';
+
+// Include non-theme styles for core.
+@include mat-core();
+
+// Define a theme.
+$primary: mat-palette($atsui-blue);
+$accent:  mat-palette($atsui-purple, A200, A100, A400);
+
+$theme: mat-dark-theme((
+  color: (
+    primary: $primary,
+    accent: $accent,
+  )
+));
+
+// Include all theme styles for the components.
+@include angular-material-theme($theme);
+@include atsui-theme($theme);

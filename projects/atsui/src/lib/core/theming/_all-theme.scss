@@ -1,0 +1,15 @@
+@import '../core';
+@import 'palette';
+// @import '../../button/button-theme';
+// @import './theming';
+
+// Create a theme.
+@mixin atsui-theme($theme-or-color-config) {
+  $dedupe-key: 'atsui-theme';
+
+  @include _mat-check-duplicate-theme-styles($theme-or-color-config, $dedupe-key) {
+    // _mat-check-duplicate-theme-styles soon to be replaced by mat-private-check-duplicate-theme-styles
+
+    @include mat-button-theme($theme-or-color-config);
+  }
+}

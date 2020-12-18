@@ -1,30 +1,33 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
-    "declaration": false,
-    "module": "es2015",
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
+    "compileOnSave": false,
+    "compilerOptions": {
+        "baseUrl": "./",
+        "outDir": "./dist/out-tsc",
+        "sourceMap": true,
+        "declaration": false,
+        "downlevelIteration": true,
+        "experimentalDecorators": true,
+        "moduleResolution": "node",
+        "importHelpers": true,
+        "esModuleInterop": true,
+        "module": "es2020",
+        "target": "es2015",
+        "lib": ["es2018", "dom"],
+        "paths": {
+            "atsui": [
+                "dist/atsui/atsui",
+                "dist/atsui"
+            ]
+        }
+    },
+    "include": [
+        "src/**/*.ts",
+        "e2e/**/*.ts",
+        "test/**/*.ts",
+        "scripts/**/*.ts",
+        "tools/**/*.ts"
     ],
-    "lib": [
-      "es2018",
-      "dom"
-    ],
-    "paths": {
-      "tools": [
-        "dist/tools/*"
-      ],
-      "tools/*": [
-        "dist/tools/*"
-      ]
-    }
-  }
+    "exclude": [
+        "node_modules/"
+    ]
 }

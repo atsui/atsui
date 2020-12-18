@@ -1,0 +1,68 @@
+
+$atsui-blue: (
+    // 50: #000000,
+    100: #B7F1FF,
+    // 200: #000000,
+    300: #8AE8FF,
+    // 400: #000000,
+    500: #29D5FF,
+    600: #0DB9E3,
+    700: #0F8BAA,
+    // 800: #000000,
+    // 900: #000000,
+    A100: #b7f1ff,
+    A200: #8ae8ff,
+    A400: #29d5ff,
+    A700: #0f8baa,
+    contrast:
+        (
+            // 50: $dark-primary-text,
+            // 100: $dark-primary-text,
+            // 200: $dark-primary-text,
+            300: $dark-primary-text,
+            400: $dark-primary-text,
+            500: $light-primary-text,
+            600: $light-primary-text,
+            700: $light-primary-text,
+            // 800: $light-primary-text,
+            // 900: $light-primary-text,
+            A100: $dark-primary-text,
+            A200: $light-primary-text,
+            A400: $light-primary-text,
+            A700: $light-primary-text,
+        )
+);
+
+$atsui-purple: (
+    // 50: #000000,
+    100: #E9C7FD,
+    200: #DEACFA,
+    300: #D290F8,
+    400: #AB4EE0,
+    500: #6C03A8,
+    // 600: #000000,
+    700: #6C03A8,
+    // 800: #000000,
+    // 900: #000000,
+    A100: #E9C7FD,
+    A200: #DEACFA,
+    A400: #AB4EE0,
+    A700: #6C03A8,
+    contrast:
+        (
+            // 50: $dark-primary-text,
+            100: $dark-primary-text,
+            200: $dark-primary-text,
+            300: $dark-primary-text,
+            400: $dark-primary-text,
+            500: $light-primary-text,
+            // 600: $light-primary-text,
+            700: $light-primary-text,
+            // 800: $light-primary-text,
+            // 900: $light-primary-text,
+            // A100: $dark-primary-text,
+            // A200: $light-primary-text,
+            // A400: $light-primary-text,
+            // A700: $light-primary-text,
+        )
+);

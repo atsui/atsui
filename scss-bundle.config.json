@@ -1,0 +1,8 @@
+{
+  "bundlerOptions": {
+    "logLevel": "error",
+    "dedupeGlobs": [
+      "./src/**/*.scss"
+    ]
+  }
+}

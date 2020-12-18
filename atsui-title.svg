@@ -1,0 +1,103 @@
+<svg fill="none" viewBox="0 0 800 200" height="200" xmlns="http://www.w3.org/2000/svg">
+    <foreignObject width="100%" height="100%">
+        <div xmlns="http://www.w3.org/1999/xhtml">
+            <style>
+                @keyframes rotate {
+                    0%   { transform: rotate(3deg);  }
+                    100% { transform: rotate(-3deg); }
+                }
+
+                @keyframes gradientBackground {
+                    0%   { background-position: 0%   50%; }
+                    50%  { background-position: 100% 50%; }
+                    100% { background-position: 0%   50%; }
+                }
+
+                @keyframes fadeIn {
+                    0%   { opacity: 0; }
+                    66%  { opacity: 0; }
+                    100% { opacity: 1; }
+                }
+
+                .container {
+                    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica,
+                        Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 0;
+                    width: 100%;
+                    height: 175px;
+                    background-size: 600% 200%;
+                    color: white;
+                    text-align: center;
+                }
+
+                h1, h2 {
+                    position: relative;
+                    text-align: center;
+
+                    animation: rotate ease-in-out 1s infinite alternate;
+                }
+
+                h1 {
+                    font-size: 75px;
+                    margin: 0;
+                    letter-spacing: 5px;
+                    text-transform: uppercase;
+                }
+
+                h2 {
+                    font-size: 33px;
+                    margin: 0;
+                    letter-spacing: 1px;
+                }
+
+                h1 > div, h2 > div {
+                    position: absolute;
+                    width: 100%;
+
+                    background-image: linear-gradient(271.16deg,
+                            #ffce00 0.99%,
+                            #ff9a00 99.01%);
+                    background-clip: text;
+                    text-fill-color: transparent;
+
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+
+                h1:after, h2:after {
+                    color: transparent;
+                    text-shadow: 0 1px 0 #efefef, 0 2px 0 #efefef, 0 3px 0 #efefef,
+                        0 4px 0 #efefef, 0 12px 5px rgba(0, 0, 0, 0.1);
+                }
+
+                #title:after {
+                    content: "ATSUI";
+                }
+
+                #sub-title:after {
+                    content: "A TypeScript UI";
+                }
+
+            </style>
+            <div class="container">
+
+                <h1 id="title">
+                    <div>
+                        ATSUI
+                    </div>
+                </h1>
+
+                <h2 id="sub-title">
+                    <div>
+                        A TypeScript UI
+                    </div>
+                </h2>
+
+            </div>
+        </div>
+    </foreignObject>
+</svg>
