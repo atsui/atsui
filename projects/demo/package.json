@@ -1,0 +1,14 @@
+{
+  "name": "demo",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "bbs-angular-material": "^0.0.1"
+  },
+  "dependencies": {
+    "@angular/common": "^11.0.4",
+    "@angular/core": "^11.0.4",
+    "@angular/material": "^11.0.2",
+
+    "tslib": "^2.0.0"
+  }
+}

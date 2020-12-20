@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "build-scss": "gulp build-scss",
-    "gulp": "gulp"
+    "gulp": "gulp",
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {

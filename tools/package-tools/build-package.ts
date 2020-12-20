@@ -1,18 +1,14 @@
 import { join } from 'path';
 import { buildConfig } from './build-config';
 import { buildNgPipeline } from './gulp/build-ng';
-import { buildSassPipeline } from './gulp/build-sass-pipeline';
-import { buildScssBundlePipeline } from './gulp/build-scss-bundle-pipeline';
 
+const { packagesDir, outputDir } = buildConfig;
 
-const { packagesDir, outputDir, projectDir } = buildConfig;
-
-export enum PackageType {
-    lib = 'lib',
-    app = 'app'
+export enum AngularProjectType {
+    library = 'library',
+    application = 'application'
 }
-
-export class BuildPackage {
+export class AngularProject {
 
     /** Path to the package sources. */
     sourceDir: string;
@@ -20,9 +16,9 @@ export class BuildPackage {
     /** Path to the package output. */
     outputDir: string;
 
-    type: PackageType;
+    type: AngularProjectType;
 
-    constructor(readonly name: string, type: PackageType, readonly dependencies: BuildPackage[] = []) {
+    constructor(readonly name: string, type: AngularProjectType, readonly dependencies: AngularProject[] = []) {
         this.sourceDir = join(packagesDir, name);
         this.outputDir = join(outputDir, name);
         this.type = type;
@@ -47,28 +43,16 @@ export class BuildPackage {
             '--progress',
             '--watch=false');
     }
+}
 
-    async scssBundle(done: any) {
-
-        buildScssBundlePipeline(
-            this.sourceDir,
-            '/src/lib/theming-bundle.scss',
-            join(this.outputDir, '/src/lib/_theming.scss'),
-            done,
-            undefined,
-            [ projectDir + '/node_modules' ],
-            [ '~@angular/.*' ]);
+export class AngularLibraryProject extends AngularProject {
+    constructor(readonly name: string, readonly dependencies: AngularProject[] = []) {
+        super(name, AngularProjectType.library, dependencies);
     }
+}
 
-    async buildSass() {
-
-        const includePaths = [ join(projectDir, 'node_modules/') ];
-
-        return buildSassPipeline(
-            this.sourceDir,
-            '**/[!_]*theme.scss',
-            this.outputDir,
-            includePaths);
+export class AngularApplicationProject extends AngularProject {
+    constructor(readonly name: string, readonly dependencies: AngularProject[] = []) {
+        super(name, AngularProjectType.application, dependencies);
     }
-
 }

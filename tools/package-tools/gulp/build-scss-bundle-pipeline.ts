@@ -2,7 +2,6 @@ import {join} from 'path';
 import { Bundler } from 'scss-bundle';
 import * as fs from 'fs';
 
-/** Create a gulp task that builds SCSS files. */
 export function buildScssBundlePipeline(projectPath: string, entryFile: string, outputFile: string, done: any, dedupeGlobs?: string[], includePaths?: string[], ignoreImports?: string[]) {
 
     (async (done: any) => {

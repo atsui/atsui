@@ -1,4 +1,4 @@
-import { BuildPackage, PackageType } from '../package-tools';
+import { AngularLibraryProject, AngularApplicationProject } from '../package-tools';
 
-export const AtsuiPackage = new BuildPackage('atsui', PackageType.lib);
-// export const atsuiDemoPackage = new BuildPackage('atsui', [atsuiPackage]);
+export const atsuiLibrary = new AngularLibraryProject('atsui');
+export const demoApplication = new AngularApplicationProject('demo', [ atsuiLibrary ]);
